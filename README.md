@@ -56,10 +56,7 @@ See the [bpm-frontend/README.md](bpm-frontend/README.md) for endpoint details an
 - Demo video (see submission instructions)
 
 ## Submission
-- Push all code to GitHub
+- Pushed all code to GitHub
 - Include this README and the frontend README
 - Provide a demo video showing the system in action
 
----
-
-For any issues, please contact the project maintainer.
