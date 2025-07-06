@@ -6,6 +6,8 @@
 
 #include OATPP_CODEGEN_BEGIN(DTO)
 
+
+
 class JobDto : public oatpp::DTO {
     DTO_INIT(JobDto, DTO)
     DTO_FIELD(Int32, quantity);

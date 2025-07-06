@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { devicePlaced, devicePicked, getReadyToPlace, getReadyToPick } from "../api/bpmApi";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 export default function RobotWorkflowPanel({ setNotification, sockets }) {
   const [selectedSocket, setSelectedSocket] = useState(null);
@@ -47,12 +49,14 @@ export default function RobotWorkflowPanel({ setNotification, sockets }) {
       <div className="robot-controls">
         <div className="control-section">
           <h4>Robot Status</h4>
-          <button onClick={handleGetReadyToPlace} className="robot-btn">
-            Check Ready to Place
-          </button>
-          <button onClick={handleGetReadyToPick} className="robot-btn">
-            Check Ready to Pick
-          </button>
+          <Stack spacing={2}>
+            <Button variant="contained" onClick={handleGetReadyToPlace}>
+              Check Ready to Place
+            </Button>
+            <Button variant="contained" onClick={handleGetReadyToPick}>
+              Check Ready to Pick
+            </Button>
+          </Stack>
         </div>
 
         <div className="control-section">

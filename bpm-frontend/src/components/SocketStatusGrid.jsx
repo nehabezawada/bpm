@@ -1,31 +1,37 @@
 import React from "react";
+import { Card, CardContent, Typography, Chip } from "@mui/material";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import ErrorIcon from "@mui/icons-material/Error";
+import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 
-const statusClass = {
-  0: "idle", // IDLE
-  1: "active", // ACTIVE
-  2: "passed", // COMPLETED_PASSED
-  3: "failed", // COMPLETED_FAILED
-};
-
-const statusLabel = {
-  0: "IDLE",
-  1: "ACTIVE",
-  2: "PASSED",
-  3: "FAILED",
+const statusMap = {
+  0: { label: "IDLE", color: "default", icon: <RadioButtonUncheckedIcon /> },
+  1: { label: "ACTIVE", color: "info", icon: <HourglassEmptyIcon /> },
+  2: { label: "PASSED", color: "success", icon: <CheckCircleIcon /> },
+  3: { label: "FAILED", color: "error", icon: <ErrorIcon /> },
 };
 
 export default function SocketStatusGrid({ sockets }) {
   return (
-    <div className="socket-grid">
-      {sockets.map(socket => (
-        <div
-          key={socket.id}
-          className={`socket-card ${statusClass[socket.status]}`}
-        >
-          <div style={{ fontWeight: 700 }}>Socket {socket.id}</div>
-          <div style={{ fontSize: "0.95rem", marginTop: 6 }}>{statusLabel[socket.status]}</div>
-        </div>
-      ))}
+    <div style={{ display: "flex", flexWrap: "wrap", gap: 16, justifyContent: "center" }}>
+      {sockets.map(socket => {
+        const status = statusMap[socket.status];
+        return (
+          <Card key={socket.id} sx={{ width: 140, textAlign: "center" }}>
+            <CardContent>
+              <Typography variant="h6">Socket {socket.id}</Typography>
+              <Chip
+                icon={status.icon}
+                label={status.label}
+                color={status.color}
+                variant="outlined"
+                sx={{ mt: 1, fontWeight: "bold" }}
+              />
+            </CardContent>
+          </Card>
+        );
+      })}
     </div>
   );
 } 

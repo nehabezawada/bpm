@@ -5,11 +5,12 @@ import JobMetrics from "./components/JobMetrics";
 import Notifications from "./components/Notifications";
 import RobotWorkflowPanel from "./components/RobotWorkflowPanel";
 import { getSockets, getJobStatus } from "./api/bpmApi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [sockets, setSockets] = useState([]);
   const [jobStatus, setJobStatus] = useState({});
-  const [notification, setNotification] = useState(null);
 
   // Polling for real-time updates
   useEffect(() => {
@@ -25,11 +26,11 @@ function App() {
   return (
     <div className="App">
       <h1>BPM Programming Dashboard</h1>
-      <JobControlPanel setNotification={setNotification} jobStatus={jobStatus} />
+      <JobControlPanel setNotification={toast} jobStatus={jobStatus} />
       <JobMetrics jobStatus={jobStatus} />
-      <SocketStatusGrid sockets={sockets} setNotification={setNotification} />
-      <RobotWorkflowPanel setNotification={setNotification} sockets={sockets} />
-      <Notifications message={notification} />
+      <SocketStatusGrid sockets={sockets} setNotification={toast} />
+      <RobotWorkflowPanel setNotification={toast} sockets={sockets} />
+      <ToastContainer position="bottom-right" />
     </div>
   );
 }
