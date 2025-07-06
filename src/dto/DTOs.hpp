@@ -1,8 +1,7 @@
-#ifndef DTOs_hpp
-#define DTOs_hpp
+#pragma once
 
-#include "oatpp/macro/codegen.hpp"
 #include "oatpp/Types.hpp"
+#include "oatpp/macro/codegen.hpp"
 
 #include OATPP_CODEGEN_BEGIN(DTO)
 
@@ -19,6 +18,24 @@ class MyDto : public oatpp::DTO {
   
 };
 
-#include OATPP_CODEGEN_END(DTO)
+class JobStatusDto : public oatpp::DTO {
+  DTO_INIT(JobStatusDto, DTO)
+  DTO_FIELD(Int32, quantity);
+  DTO_FIELD(Int32, completed);
+  DTO_FIELD(Int32, passed);
+  DTO_FIELD(Int32, failed);
+  DTO_FIELD(Int32, status);
+};
 
-#endif /* DTOs_hpp */
+class SocketDto : public oatpp::DTO {
+  DTO_INIT(SocketDto, DTO)
+  DTO_FIELD(Int32, id);
+  DTO_FIELD(Int32, status);
+};
+
+class SocketStatusDto : public oatpp::DTO {
+  DTO_INIT(SocketStatusDto, DTO)
+  DTO_FIELD(List<Object<SocketDto>>, sockets);
+};
+
+#include OATPP_CODEGEN_END(DTO)
